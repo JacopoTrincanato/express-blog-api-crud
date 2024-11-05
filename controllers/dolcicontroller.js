@@ -50,5 +50,6 @@ const store = (req, res)=>{
 //esporto index e show
 module.exports = { 
     index,
-    show 
+    show,
+    store
 }
