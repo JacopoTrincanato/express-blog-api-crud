@@ -39,7 +39,7 @@ const index = (req, res)=>{
 //creo show
 const show = (req, res)=>{
 
-    //uso il ciclo find per trovare e visualizzare il post in base al suo slug
+    //uso find per trovare e visualizzare il post in base al suo slug
     const post = posts.find(post => post.slug === req.params.slug)
 
     //restituisci un messaggio di errore se non trova il post
@@ -86,9 +86,44 @@ const store = (req, res)=>{
       })
 }
 
-//esporto index e show
+//creo update
+const update = (req, res)=>{
+
+    //uso find per trovare e visualizzare il post in base al suo slug
+    const post = posts.find(post => post.slug === req.params.slug)
+
+    //restituisci un messaggio di errore se non trova il post
+    if (!post) {
+        return res.status(404).json({
+            error: `404! Not found`
+        })
+    }
+
+    //creo il post aggiornato
+    const updatedPost = {
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    //Aggiorno l'array posts con i nuovi dati
+    posts[post] = updatedPost;
+
+    fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
+
+    //se lo trova, restituisci uno status 200
+    return res.status(200).json({
+        data: updatedPost
+    })
+    
+}
+
+//esporto index, show, store e update
 module.exports = { 
     index,
     show,
-    store
+    store,
+    update
 }
