@@ -43,8 +43,17 @@ const show = (req, res)=>{
 }
 
 const store = (req, res)=>{
-    console.log(req.body);
+    //creo il nuovo post
+    const post = {
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
     
+    //pusho il nuovo post nell'array
+    posts.push(post);
 }
 
 //esporto index e show
