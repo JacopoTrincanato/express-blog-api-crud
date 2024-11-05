@@ -78,7 +78,7 @@ const store = (req, res)=>{
     //fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
 
     //ritorno l'array di post aggiornato
-    return res.status(201).json({
+    res.status(201).json({
         status: 201,
         data: posts,
         count: posts.length

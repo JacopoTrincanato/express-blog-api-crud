@@ -1,4 +1,4 @@
-module.exports = [
+const posts = [
     {
         "title": "Ciambellone",
         "slug": "ciambellone",
@@ -58,4 +58,6 @@ module.exports = [
         ]
     },
     {}
-]
+];
+
+module.exports = posts;
