@@ -42,6 +42,11 @@ const show = (req, res)=>{
     
 }
 
+const store = (req, res)=>{
+    console.log(req.body);
+    
+}
+
 //esporto index e show
 module.exports = { 
     index,
