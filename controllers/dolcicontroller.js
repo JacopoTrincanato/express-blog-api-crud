@@ -1,5 +1,8 @@
 //importo l'array dal file db.js nella cartella db
-const posts = require('../db/db.js')
+const posts = require('../db/db.js');
+
+//aggiungo fs
+const fs = require('fs');
 
 const index = (req, res)=>{
 
@@ -54,6 +57,15 @@ const store = (req, res)=>{
     
     //pusho il nuovo post nell'array
     posts.push(post);
+
+    fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
+
+    //ritorno l'array di post aggiornato
+    return res.status(201).json({
+        status: 201,
+        data: posts,
+        count: posts.length
+      })
 }
 
 //esporto index e show
