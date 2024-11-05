@@ -74,7 +74,7 @@ const store = (req, res)=>{
     //pusho il nuovo post nell'array
     posts.push(post);
 
-    //fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
+    fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
 
     //fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
 
