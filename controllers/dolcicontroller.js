@@ -4,7 +4,8 @@ const posts = require('../db/db.js');
 //aggiungo fs
 const fs = require('fs');
 
-const index = (req, res)=>{
+//commento index e la ricreo restituendo un JSON con la lista dei post
+/*const index = (req, res)=>{
 
     //cero una ul
     let ul = `<ul>`;
@@ -25,8 +26,17 @@ const index = (req, res)=>{
     ul += `</ul>`;
 
     res.status(200).send(ul)
+}*/
+
+//ricreo il nuovo index
+const index = (req, res)=>{
+    res.json({
+        data: posts,
+        count: posts.length
+    })
 }
 
+//creo show
 const show = (req, res)=>{
 
     //uso il ciclo find per trovare e visualizzare il post in base al suo slug
@@ -45,7 +55,12 @@ const show = (req, res)=>{
     
 }
 
+//creo store
 const store = (req, res)=>{
+
+    console.log(req.body);
+    
+
     //creo il nuovo post
     const post = {
         title: req.body.title,
@@ -59,6 +74,8 @@ const store = (req, res)=>{
     posts.push(post);
 
     fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
+
+    //fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
 
     //ritorno l'array di post aggiornato
     return res.status(201).json({

@@ -21,7 +21,7 @@ app.listen(PORT, (req, res)=>{
 })
 
 //inserisco il middleware
-app.use(express.json())
+app.use(express.json());
 
 //creo la prima rotta
 app.get('/', (req, res)=>{
