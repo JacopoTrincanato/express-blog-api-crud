@@ -59,6 +59,7 @@ const show = (req, res)=>{
 const store = (req, res)=>{
 
     console.log(req.body);
+   // console.log(req)
     
 
     //creo il nuovo post
@@ -73,12 +74,12 @@ const store = (req, res)=>{
     //pusho il nuovo post nell'array
     posts.push(post);
 
-    fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
+    //fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
 
     //fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
 
     //ritorno l'array di post aggiornato
-    res.status(201).json({
+    return res.status(201).json({
         status: 201,
         data: posts,
         count: posts.length
