@@ -119,6 +119,26 @@ const update = (req, res)=>{
     
 }
 
+//creo destroy
+const destroy = (req, res)=> {
+    
+    //uso find per trovare e visualizzare il post in base al suo slug
+    const post = posts.find(post => post.slug === req.params.slug)
+    console.log(post);
+    
+    //verifico se il post esiste
+    if (!post) {
+        return res.status(404).json({
+            error: `404! not found`
+        })
+    }
+    
+    //cancello il post
+    const newPosts = posts.filter(post => post.slug !== req.params.slug)
+
+    //aggiorno l'array posts con i nuovi dati
+}
+
 //esporto index, show, store e update
 module.exports = { 
     index,
