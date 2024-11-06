@@ -1,8 +1,8 @@
 module.exports = [
     {
         "marca": "Fiat",
-        "modello": "Panda",
-        "alimentazione": "Benzina"
+        "modello": "Model 3",
+        "alimentazione": "Elettrico"
     },
     {
         "marca": "Volkswagen",
