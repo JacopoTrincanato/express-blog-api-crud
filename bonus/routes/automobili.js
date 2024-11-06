@@ -7,19 +7,19 @@ const autoController = require('../controllers/autocontroller.js');
 //creo le rotte
 
 //creo index
-app.get('/', autoController.index);
+router.get('/', autoController.index);
 
 //creo show
-app.get('/:marca', autoController.show);
+router.get('/:marca', autoController.show);
 
 //creo store
-app.post('/:marca', autoController.store);
+router.post('/:marca', autoController.store);
 
 //creo update
-app.put('/:marca', autoController.update);
+router.put('/:marca', autoController.update);
 
 //creo destroy
-app.delete('/:marca', autoController.destroy);
+router.delete('/:marca', autoController.destroy);
 
 //esporto le rotte
 module.exports = router
