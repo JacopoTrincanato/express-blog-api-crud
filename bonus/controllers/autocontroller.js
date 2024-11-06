@@ -1,5 +1,8 @@
 const automobili = require('../database/db.js');
 
+//richiamo il metodo fs
+const fs = require('fs');
+
 //creo index
 const index = (req, res)=>{
     res.json({
@@ -36,10 +39,21 @@ const store = (req, res)=>{
 
     //pusho l'automobile nell'array automobili
     automobili.push(automobile);
+
+    //aggiorno il file
+    fs.writeFileSync('./database/db.js', `module.exports = ${JSON.stringify(automobili, null, 4)}`);
+
+    //restituisco il nuovo array
+    return res.status(201).json({
+        status: 201,
+        data: automobili,
+        count: automobili.length
+    })
 };
 
 //esporto tutto
 module.exports = {
     index,
-    show
+    show,
+    store
 }
