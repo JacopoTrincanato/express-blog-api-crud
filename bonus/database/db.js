@@ -1,4 +1,3 @@
-
 const automobili = [
     { 
         marca: "Fiat",
