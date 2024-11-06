@@ -18,5 +18,8 @@ app.post('/:marca', autoController.store);
 //creo update
 app.put('/:marca', autoController.update);
 
+//creo destroy
+app.delete('/:marca', autoController.destroy);
+
 //esporto le rotte
 module.exports = router

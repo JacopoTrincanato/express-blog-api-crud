@@ -15,7 +15,7 @@ const index = (req, res)=>{
 const show = (req, res)=>{
 
     //trovo l'automobile
-    const automobile = automobili.find(automobile=> automobile.marca === req.params.marca);
+    const automobile = automobili.find(automobile => automobile.marca === req.params.marca);
 
     //restituisco un messaggio di errore se l'automobile non è presente
     if (!automobile) {
@@ -54,12 +54,12 @@ const store = (req, res)=>{
 //creo update
 const update = (req, res)=>{
     //cerco l'automobile nell'array
-    const automobile = automobili.find(automobile=> automobile.marca === req.params.marca);
+    const automobile = automobili.find(automobile => automobile.marca === req.params.marca);
 
     //restituisco un messaggio di errore se non la trovo
     if (!automobile) {
         return res.ststus(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
-    }
+    };
 
     //aggiorno l'oggetto automobile
     automobile.nome = req.body.nome;
@@ -77,10 +77,39 @@ const update = (req, res)=>{
     });
 };
 
+//creo destroy
+const destroy = (req, res)=>{
+    //cerco l'automobile nell'array
+    const automobile = automobili.find(automobile => automobile.marca === req.params.marca);
+
+    //verifico se l'automobile esiste
+    console.log(automobile);
+
+    //restituisco un messaggio di errore se non la trovo
+    if (!automobile) {
+        return res.ststus(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
+    };
+
+    //cancello l'automobile
+    const newAutomobili = automobili.filter(automobile => automobile.marca !== req.params.marca);
+
+    //aggiorno il file
+    fs.writeFileSync('./database/db.js', `module.exports = ${JSON.stringify(automobili, null, 4)}`);
+
+    //restituisco il nuovo array di automobili
+    res.status(200).json({
+        status: 201,
+        data: automobili,
+        count: automobili.length
+    });
+    
+};
+
 //esporto tutto
 module.exports = {
     index,
     show,
     store,
-    update
+    update,
+    destroy
 }
