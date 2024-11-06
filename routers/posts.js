@@ -16,7 +16,7 @@ router.get('/:slug', dolciController.show);
 router.post('/', dolciController.store);
 
 //update
-router.patch('/:slug', dolciController.update)
+router.put('/:slug', dolciController.update)
 
 //esporto router
 module.exports = router
