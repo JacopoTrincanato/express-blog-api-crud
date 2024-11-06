@@ -15,4 +15,4 @@ const autoRoutes = require('./routes/automobili.js');
 app.use(express.json());
 
 //utilizzo le rotte
-app.use('/automobili', autoRoutes)
+app.use('/automobili', autoRoutes);
