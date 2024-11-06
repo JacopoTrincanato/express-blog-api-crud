@@ -13,10 +13,10 @@ app.get('/', autoController.index);
 app.get('/:marca', autoController.show);
 
 //creo store
-app.get('/:marca', autoController.store);
+app.post('/:marca', autoController.store);
 
 //creo update
-app.get('/:marca', autoController.update);
+app.put('/:marca', autoController.update);
 
 //esporto le rotte
 module.exports = router
