@@ -137,6 +137,14 @@ const destroy = (req, res)=> {
     const newPosts = posts.filter(post => post.slug !== req.params.slug)
 
     //aggiorno l'array posts con i nuovi dati
+    fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(newPosts, null, 4)};\n\nmodule.exports = posts;`);
+
+    //restituisco il nuovo array con i dati salvati
+    res.status(200).json({
+        status: 201,
+        data: newPosts,
+        count: newPosts.length
+    })
 }
 
 //esporto index, show, store e update
@@ -144,5 +152,6 @@ module.exports = {
     index,
     show,
     store,
-    update
+    update,
+    destroy
 }
