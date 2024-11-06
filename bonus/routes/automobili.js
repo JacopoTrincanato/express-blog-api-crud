@@ -13,7 +13,7 @@ router.get('/', autoController.index);
 router.get('/:marca', autoController.show);
 
 //creo store
-router.post('/:marca', autoController.store);
+router.post('/', autoController.store);
 
 //creo update
 router.put('/:marca', autoController.update);
