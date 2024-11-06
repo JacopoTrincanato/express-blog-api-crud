@@ -99,23 +99,22 @@ const update = (req, res)=>{
         })
     }
 
-    //creo il post aggiornato
-    const updatedPost = {
-        title: req.body.title,
-        slug: req.body.slug,
-        content: req.body.content,
-        image: req.body.image,
-        tags: req.body.tags
-    }
+    //aggiorno il post
+    post.title = req.body.title;
+    post.slug = req.body.slug;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+    
 
     //Aggiorno l'array posts con i nuovi dati
-    posts[post] = updatedPost;
-
     fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(posts, null, 4)};\n\nmodule.exports = posts;`);
 
     //se lo trova, restituisci uno status 200
     return res.status(200).json({
-        data: updatedPost
+        status: 201,
+        data: posts,
+        count: posts.length
     })
     
 }
