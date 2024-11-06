@@ -16,12 +16,26 @@ const show = (req, res)=>{
 
     //restituisco un messaggio di errore se l'automobile non è presente
     if (!automobile) {
-        return res.status(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`})
+        return res.status(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
     }
 
     return res.status(200).json({
         data: automobile
     });
+};
+
+//creo store
+const store = (req, res)=>{
+    
+    //creo una nuova automobile
+    const automobile = {
+        marca: req.body.marca,
+        modello: req.body.modello,
+        alimentazione: req.body.alimentazione
+    };
+
+    //pusho l'automobile nell'array automobili
+    automobili.push(automobile);
 };
 
 //esporto tutto
