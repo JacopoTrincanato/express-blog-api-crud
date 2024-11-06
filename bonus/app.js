@@ -9,7 +9,7 @@ app.listen(3006, ()=>{
 });
 
 //importo le rotte
-const autoRoutes = require('../routes/automobili.js');
+const autoRoutes = require('./routes/automobili.js');
 
 //inserisco il middleware
 app.use(express.json());
