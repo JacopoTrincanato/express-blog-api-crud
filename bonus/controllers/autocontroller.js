@@ -58,7 +58,7 @@ const update = (req, res)=>{
 
     //restituisco un messaggio di errore se non la trovo
     if (!automobile) {
-        return res.ststus(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
+        return res.status(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
     };
 
     //aggiorno l'oggetto automobile
@@ -87,7 +87,7 @@ const destroy = (req, res)=>{
 
     //restituisco un messaggio di errore se non la trovo
     if (!automobile) {
-        return res.ststus(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
+        return res.status(404).json({error: `Non sono presenti automobili della marca ${req.params.marca}`});
     };
 
     //cancello l'automobile
