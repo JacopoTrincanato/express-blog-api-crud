@@ -99,8 +99,8 @@ const destroy = (req, res)=>{
     //restituisco il nuovo array di automobili
     res.status(200).json({
         status: 201,
-        data: automobili,
-        count: automobili.length
+        data: newAutomobili,
+        count: newAutomobili.length
     });
     
 };
