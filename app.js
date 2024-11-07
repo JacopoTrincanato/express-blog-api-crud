@@ -1,6 +1,6 @@
 //creo una variabile che richiama express
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
 //importo il contenuto di posts.js
 const postRouter = require('./routers/posts.js')
@@ -24,7 +24,7 @@ app.use(express.static('public'));
 app.listen(PORT, (req, res)=>{
     console.log(`Server is running at ${HOST}:${PORT}`);
     
-})
+});
 
 //creo la prima rotta
 app.get('/', (req, res)=>{
@@ -34,11 +34,29 @@ app.get('/', (req, res)=>{
 //inserisco il middleware
 app.use(express.json());
 
+//Post API
+app.use('/posts', postRouter);
+
 //uso il middleware notFound
 app.use('/posts', notFound);
 
 //uso il middleware loggerMiddleware
 app.use('/posts', loggerMiddleware);
 
-//Post API
-app.use('/posts', postRouter);
+//creo un nuovo errore
+app.use('/posts', (req, res, next)=>{
+    //gestione errori lato server
+    throw new Error('Errore interno');
+    
+});
+
+//gestisco l'errore 500
+app.use((err, req, res, next)=>{
+    console.error(err.stack);
+    res.status(500).send({
+        status: 500,
+        message: 'error message',
+        error: err.message
+    });
+});
+
