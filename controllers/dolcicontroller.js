@@ -33,8 +33,8 @@ const index = (req, res)=>{
     res.json({
         data: posts,
         count: posts.length
-    })
-}
+    });
+};
 
 //creo show
 const show = (req, res)=>{
@@ -46,14 +46,14 @@ const show = (req, res)=>{
     if (!post) {
         return res.status(404).json({
             error: `404! Not found`
-        })
+        });
     }
     //se lo trova, restituisci uno status 200
     return res.status(200).json({
         data: post
-    })
+    });
     
-}
+};
 
 //creo store
 const store = (req, res)=>{
@@ -69,7 +69,7 @@ const store = (req, res)=>{
         content: req.body.content,
         image: req.body.image,
         tags: req.body.tags
-    }
+    };
     
     //pusho il nuovo post nell'array
     posts.push(post);
@@ -83,21 +83,21 @@ const store = (req, res)=>{
         status: 201,
         data: posts,
         count: posts.length
-      })
-}
+    });
+};
 
 //creo update
 const update = (req, res)=>{
 
     //uso find per trovare e visualizzare il post in base al suo slug
-    const post = posts.find(post => post.slug === req.params.slug)
+    const post = posts.find(post => post.slug === req.params.slug);
 
     //restituisci un messaggio di errore se non trova il post
     if (!post) {
         return res.status(404).json({
             error: `404! Not found`
-        })
-    }
+        });
+    };
 
     //aggiorno il post
     post.title = req.body.title;
@@ -115,26 +115,26 @@ const update = (req, res)=>{
         status: 201,
         data: posts,
         count: posts.length
-    })
+    });
     
-}
+};
 
 //creo destroy
 const destroy = (req, res)=> {
     
     //uso find per trovare e visualizzare il post in base al suo slug
-    const post = posts.find(post => post.slug === req.params.slug)
+    const post = posts.find(post => post.slug === req.params.slug);
     console.log(post);
     
     //verifico se il post esiste
     if (!post) {
         return res.status(404).json({
             error: `404! not found`
-        })
-    }
+        });
+    };
     
     //cancello il post
-    const newPosts = posts.filter(post => post.slug !== req.params.slug)
+    const newPosts = posts.filter(post => post.slug !== req.params.slug);
 
     //aggiorno l'array posts con i nuovi dati
     fs.writeFileSync('./db/db.js', `const posts = ${JSON.stringify(newPosts, null, 4)};\n\nmodule.exports = posts;`);
@@ -144,10 +144,10 @@ const destroy = (req, res)=> {
         status: 201,
         data: newPosts,
         count: newPosts.length
-    })
-}
+    });
+};
 
-//esporto index, show, store e update
+//esporto index, show, store, update e destroy
 module.exports = { 
     index,
     show,

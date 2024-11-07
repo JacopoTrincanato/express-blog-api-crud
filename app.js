@@ -1,9 +1,11 @@
 //creo una variabile che richiama express
 const express = require('express');
+
+//creo la costante app
 const app = express();
 
 //importo il contenuto di posts.js
-const postRouter = require('./routers/posts.js')
+const postRouter = require('./routers/posts.js');
 
 //importo notFound middleware
 const notFound = require('./middlewares/notFound.js');
@@ -12,10 +14,10 @@ const notFound = require('./middlewares/notFound.js');
 const loggerMiddleware = require('./middlewares/loggerMiddleware.js');
 
 //richiamo la variabile d'ambiente HOST dal file .env
-const HOST = process.env.HOST
+const HOST = process.env.HOST;
 
 //richiamo la variabile d'ambiente PORT dal file .env
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 
 //gestisco i file statici
 app.use(express.static('public'));

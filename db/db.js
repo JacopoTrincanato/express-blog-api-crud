@@ -1,3 +1,4 @@
+//creo l'array di post
 const posts = [
     {
       title: "Ciambellone",
@@ -41,6 +42,7 @@ const posts = [
       image: "torta_paesana.jpeg",
       tags: ["Dolci", "Dolci al cioccolato", "Torte", "Ricette vegetariane", "Ricette al forno"],
     },
-  ];
+];
 
+//esporto l'array di post
 module.exports = posts;

@@ -1,8 +1,11 @@
-const express = require('express')
-const router = express.Router()
+//creo la costante express
+const express = require('express');
+
+//creo la costante router
+const router = express.Router();
 
 //importo il contenuto di dolcicontroller
-const dolciController = require('../controllers/dolcicontroller.js')
+const dolciController = require('../controllers/dolcicontroller.js');
 
 //definisco le rotte
 
