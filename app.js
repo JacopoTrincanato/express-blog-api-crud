@@ -1,6 +1,9 @@
 //creo una variabile che richiama express
 const express = require('express');
 
+//creo una variabile che richiama cors
+const cors = require('cors');
+
 //creo la costante app
 const app = express();
 
@@ -22,14 +25,17 @@ const PORT = process.env.PORT;
 //gestisco i file statici
 app.use(express.static('public'));
 
+// Uso cors per permettere richieste da tutti gli origin
+app.use(cors());
+
 //starto il server
-app.listen(PORT, (req, res)=>{
+app.listen(PORT, (req, res) => {
     console.log(`Server is running at ${HOST}:${PORT}`);
-    
+
 });
 
 //creo la prima rotta
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send('Post rest API');
 })
 
@@ -46,14 +52,14 @@ app.use('/posts', notFound);
 app.use('/posts', loggerMiddleware);
 
 //creo un nuovo errore
-app.use('/posts', (req, res, next)=>{
+app.use('/posts', (req, res, next) => {
     //gestione errori lato server
     throw new Error('Errore interno');
-    
+
 });
 
 //gestisco l'errore 500
-app.use((err, req, res, next)=>{
+app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send({
         status: 500,
