@@ -46,7 +46,7 @@ app.use(express.json());
 app.use('/posts', postRouter);
 
 //uso il middleware notFound
-app.use('/posts', notFound);
+//app.use('/posts', notFound);
 
 //uso il middleware loggerMiddleware
 app.use('/posts', loggerMiddleware);

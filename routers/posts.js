@@ -21,7 +21,7 @@ router.post('/', dolciController.store);
 //update
 router.put('/:slug', dolciController.update);
 
-//update
+//destroy
 router.delete('/:slug', dolciController.destroy);
 
 //esporto router
