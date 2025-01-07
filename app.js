@@ -11,7 +11,7 @@ const app = express();
 const postRouter = require('./routers/posts.js');
 
 //importo notFound middleware
-const notFound = require('./middlewares/notFound.js');
+//const notFound = require('./middlewares/notFound.js');
 
 //importo loggerMiddleware
 const loggerMiddleware = require('./middlewares/loggerMiddleware.js');
